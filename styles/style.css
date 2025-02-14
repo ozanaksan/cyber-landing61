@@ -4,15 +4,15 @@
 
 :root {
   --color: #111;
-  --background-color: #fff;
-  --theme-color: #d50032  ;  
+  --background-color: #222;
+  --theme-color: #ff4522  ;  
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --color: #eee;
     --background-color: #222;
-    --theme-color: #d50032    ;
+    --theme-color: #ff4522    ;
   }
 }
 
