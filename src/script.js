@@ -6,8 +6,8 @@ class ThemeManager {
     }
 
     init() {
-        // Önce tema ayarla, sonra buton oluştur
-        this.applyTheme();
+        // Temayı HTML'e yansıt
+        document.documentElement.setAttribute('data-theme', this.theme);
         this.createToggleButton();
         this.showContent();
     }
@@ -39,23 +39,7 @@ class ThemeManager {
     toggleTheme() {
         this.theme = this.theme === 'dark' ? 'light' : 'dark';
         localStorage.setItem('theme', this.theme);
-        this.applyTheme();
-        this.updateToggleIcon();
-    }
-
-    applyTheme() {
-        const root = document.documentElement;
-        
-        if (this.theme === 'light') {
-            root.style.setProperty('--color', '#111');
-            root.style.setProperty('--background-color', '#f5f5f5');
-            root.style.setProperty('--theme-color', '#ff4522');
-        } else {
-            root.style.setProperty('--color', '#eee');
-            root.style.setProperty('--background-color', '#222');
-            root.style.setProperty('--theme-color', '#ff4522');
-        }
-        // Her durumda, hangi temanın aktif olduğunu HTML'e bildir.
+        // Sadece data-theme'i güncelle, gerisini CSS halleder
         document.documentElement.setAttribute('data-theme', this.theme);
     }
 
@@ -75,22 +59,6 @@ class ThemeManager {
         document.body.classList.add('theme-loaded');
     }
 }
-
-// Sayfa yüklenmeden önce tema ayarla
-(function() {
-    const theme = localStorage.getItem('theme') || 'dark';
-    const root = document.documentElement;
-    
-    if (theme === 'light') {
-        root.style.setProperty('--color', '#111');
-        root.style.setProperty('--background-color', '#f5f5f5');
-        root.style.setProperty('--theme-color', '#ff4522');
-    } else {
-        root.style.setProperty('--color', '#eee');
-        root.style.setProperty('--background-color', '#222');
-        root.style.setProperty('--theme-color', '#ff4522');
-    }
-})();
 
 function displayLastUpdated() {
     const dateContainer = document.getElementById('last-updated-container');

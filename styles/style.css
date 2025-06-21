@@ -12,16 +12,27 @@ html.theme-ready {
 }
 
 :root {
-  --color: #111;
-  --background-color: #222;
-  --theme-color: #ff4522  ;
+  /* Renk Paleti */
+  --theme-color: #ff4522;
+  --light-bg: #f5f5f5;
+  --light-color: #111;
+  --dark-bg: #222;
+  --dark-color: #eee;
+
+  /* Varsayılan (Koyu) Tema */
+  --background: var(--dark-bg);
+  --color: var(--dark-color);
+}
+
+[data-theme="light"] {
+  --background: var(--light-bg);
+  --color: var(--light-color);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color: #eee;
-    --background-color: #222;
-    --theme-color: #ff4522    ;
+    --background: var(--dark-bg);
+    --color: var(--dark-color);
   }
 }
 
@@ -46,9 +57,12 @@ a:hover, a:active {
 html {
   font-family: 'Source Code Pro', monospace;
   color: var(--color);
-  background-color: var(--background-color);
+  background-color: var(--background);
   transition: color 0.2s, background-color 0.2s;
   scrollbar-gutter: stable; /* Yatay kaymayı önler */
+  /* Temaya göre değişen dinamik ikon */
+  background: linear-gradient(135deg, var(--theme-color) 50%, var(--background) 50%);
+  transition: background 0.2s ease;
 }
 
 body {
@@ -112,16 +126,16 @@ main hr + p {
   margin-left: 10px;
   
   /* Temaya göre değişen dinamik ikon */
-  background: linear-gradient(135deg, var(--theme-color) 50%, var(--background-color) 50%);
+  background: linear-gradient(135deg, var(--theme-color) 50%, var(--background) 50%);
   transition: background 0.2s ease;
 }
 
 /* Hover'da karşıt temanın renklerini, ters çevrilmiş şekilde göster */
 [data-theme="dark"] .theme-toggle-btn:hover {
-  background: linear-gradient(135deg, #f5f5f5 50%, var(--theme-color) 50%); /* Açık temanın tersi: Beyaz / Turuncu */
+  background: linear-gradient(135deg, var(--light-bg) 50%, var(--theme-color) 50%);
 }
 [data-theme="light"] .theme-toggle-btn:hover {
-  background: linear-gradient(135deg, #222 50%, var(--theme-color) 50%); /* Koyu temanın tersi: Koyu Gri / Turuncu */
+  background: linear-gradient(135deg, var(--dark-bg) 50%, var(--theme-color) 50%);
 }
 
 .theme-toggle-btn:focus {
