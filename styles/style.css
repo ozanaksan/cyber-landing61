@@ -1,3 +1,12 @@
+/* FOUC önleme - en üstte olmalı */
+html {
+  visibility: hidden;
+}
+
+html.theme-ready {
+  visibility: visible;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,7 +14,7 @@
 :root {
   --color: #111;
   --background-color: #222;
-  --theme-color: #ff4522  ;  
+  --theme-color: #ff4522  ;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,6 +23,16 @@
     --background-color: #222;
     --theme-color: #ff4522    ;
   }
+}
+
+/* FOUC önleme - sayfa yüklenene kadar gizle */
+.no-flash {
+  visibility: hidden;
+}
+
+/* Tema yüklendiğinde görünür yap */
+.theme-loaded {
+  visibility: visible;
 }
 
 a:link, a:visited {
@@ -28,10 +47,39 @@ html {
   font-family: 'Source Code Pro', monospace;
   color: var(--color);
   background-color: var(--background-color);
+  transition: color 0.2s, background-color 0.2s;
+  scrollbar-gutter: stable; /* Yatay kaymayı önler */
+}
+
+body {
+  /* Diğer tüm kurallar kaldırıldı, body varsayılan davranışına döndü */
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 1.4em 0;
+}
+
+main hr {
+  border: 0;
+  border-top: 1px solid var(--theme-color);
+  margin: 1.5em 0;
+}
+
+main hr + p {
+  margin-bottom: 0.5em;
+}
+
+/* 
+  Genel fieldset ve legend kuralları kaldırıldı. 
+  Bu, tüm sayfalardaki boşlukları orijinal haline döndürecektir.
+*/
+
+/* Sadece beyaz temada kenarlık ve başlık rengini tema rengi yap */
+[data-theme="light"] fieldset {
+  border-color: var(--theme-color);
+}
+[data-theme="light"] legend {
+  color: var(--theme-color);
 }
 
 .content {
@@ -39,6 +87,46 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   padding: 20px;
   margin: 30px auto;
+  /* flex ve min-height kuralları kaldırıldı */
+}
+
+/* Butonu yerleştirmek için navigasyon paragrafını esnek yap */
+.content p:nth-of-type(2) {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Mobil ve dar ekranlarda sarmayı sağlar */
+    justify-content: flex-start; /* Masaüstünde sola hizalı */
+    gap: 10px; /* Linkler arası boşluk için */
+}
+
+/* Sade tema toggle butonu */
+.theme-toggle-btn {
+  border: 1px solid var(--theme-color);
+  border-radius: 0;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  
+  /* Temaya göre değişen dinamik ikon */
+  background: linear-gradient(135deg, var(--theme-color) 50%, var(--background-color) 50%);
+  transition: background 0.2s ease;
+}
+
+/* Hover'da karşıt temanın renklerini, ters çevrilmiş şekilde göster */
+[data-theme="dark"] .theme-toggle-btn:hover {
+  background: linear-gradient(135deg, #f5f5f5 50%, var(--theme-color) 50%); /* Açık temanın tersi: Beyaz / Turuncu */
+}
+[data-theme="light"] .theme-toggle-btn:hover {
+  background: linear-gradient(135deg, #222 50%, var(--theme-color) 50%); /* Koyu temanın tersi: Koyu Gri / Turuncu */
+}
+
+.theme-toggle-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 69, 34, 0.3);
 }
 
 .logo {
@@ -76,3 +164,17 @@ pre {
 
 /* Highlight.js styles */
 .hljs-comment,.hljs-quote{color:#969896}.hljs-variable,.hljs-template-variable,.hljs-tag,.hljs-name,.hljs-selector-id,.hljs-selector-class,.hljs-regexp,.hljs-deletion{color:#d54e53}.hljs-number,.hljs-built_in,.hljs-builtin-name,.hljs-literal,.hljs-type,.hljs-params,.hljs-meta,.hljs-link{color:#e78c45}.hljs-attribute{color:#e7c547}.hljs-string,.hljs-symbol,.hljs-bullet,.hljs-addition{color:#b9ca4a}.hljs-title,.hljs-section{color:#7aa6da}.hljs-keyword,.hljs-selector-tag{color:#c397d8}.hljs{display:block;overflow-x:auto;background:black;color:#eaeaea;padding:.5em}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:bold}
+
+/* Mobil responsive için tema toggle butonu */
+@media (max-width: 768px) {
+  /* Navigasyon menüsünü mobilde ortala */
+  .content p:nth-of-type(2) {
+    justify-content: center;
+  }
+
+  /* Butonu mobilde biraz daha küçült */
+  .theme-toggle-btn {
+    width: 28px;
+    height: 28px;
+  }
+}

@@ -4,13 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Çağatay Ozan Akşan - Kişisel Sayfa</title>
+    
+    <!-- Tema ayarı - CSS'ten önce -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'dark';
+            const root = document.documentElement;
+            
+            if (theme === 'light') {
+                root.style.setProperty('--color', '#111');
+                root.style.setProperty('--background-color', '#f5f5f5');
+                root.style.setProperty('--theme-color', '#ff4522');
+            } else {
+                root.style.setProperty('--color', '#eee');
+                root.style.setProperty('--background-color', '#222');
+                root.style.setProperty('--theme-color', '#ff4522');
+            }
+            root.setAttribute('data-theme', theme);
+        })();
+    </script>
+    
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/normalize.css">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 
 </head>
-<body>
+<body class="no-flash">
     <div class="content">
         <h2>| ozanaksan<b style="color: #ff4522;">.com |</b>
         </h2>
@@ -21,47 +41,52 @@
             <a href="deneyim.html"><strong>Deneyim</strong></a> |
             <a href="iletisim.html">İletişim</a>
         </p>
-        <h1>Deneyim</h1>
-        <fieldset>
-        
+        <main>
+            <h1>Deneyim</h1>
             <fieldset>
-                <legend><span>Cyber Security Specialist</span></legend>
-                <p>Fabruary / 2024 - Now</p>
+            
+                <fieldset>
+                    <legend><span>Cyber Security Specialist</span></legend>
+                    <p>Fabruary / 2024 - Now</p>
+                    <p>
+                        <a href="https://www.aksigorta.com.tr/" target="_blank" style="text-decoration: none;">Aksigorta A.Ş. | İstanbul / Turkey</a>
+                    </p>
+                </fieldset>
+            
+                <br>
+            
+                <fieldset>
+                    <legend><span>Cyber Security Intern</span></legend>
+                    <p>May / 2023 - Fabruary / 2024</p>
+                    <p>
+                        <a href="https://www.aksigorta.com.tr/" target="_blank" style="text-decoration: none;">Aksigorta A.Ş. | İstanbul / Turkey</a>
+                    </p>
+                </fieldset>
+            </fieldset>
+            
+            <br> 
+            
+            <fieldset>
+                <legend><span>Full-Stack Developer Intern</span></legend>
+                <p>August / 2022 - September / 2022</p>
                 <p>
-                    <a href="https://www.aksigorta.com.tr/" target="_blank" style="text-decoration: none;">Aksigorta A.Ş. | İstanbul / Turkey</a>
+                    <a href="https://lorenzocss.com/" target="_blank" style="text-decoration: none;">Lorenzo Yazılım | Samsun / Turkey</a>
                 </p>
             </fieldset>
-        
+            
             <br>
-        
+            
             <fieldset>
-                <legend><span>Cyber Security Intern</span></legend>
-                <p>May / 2023 - Fabruary / 2024</p>
+                <legend><span>Software Developer & Database programming Intern</span></legend>
+                <p>June / 2021 - September / 2021</p>
                 <p>
-                    <a href="https://www.aksigorta.com.tr/" target="_blank" style="text-decoration: none;">Aksigorta A.Ş. | İstanbul / Turkey</a>
+                    <a href="https://www.akgunyazilim.com.tr/" target="_blank" style="text-decoration: none;">Akgün Yazılım | Ankara / Turkey</a>
                 </p>
             </fieldset>
-        </fieldset>
-        
-        <br> 
-        
-        <fieldset>
-            <legend><span>Full-Stack Developer Intern</span></legend>
-            <p>August / 2022 - September / 2022</p>
-            <p>
-                <a href="https://lorenzocss.com/" target="_blank" style="text-decoration: none;">Lorenzo Yazılım | Samsun / Turkey</a>
-            </p>
-        </fieldset>
-        
-        <br>
-        
-        <fieldset>
-            <legend><span>Software Developer & Database programming Intern</span></legend>
-            <p>June / 2021 - September / 2021</p>
-            <p>
-                <a href="https://www.akgunyazilim.com.tr/" target="_blank" style="text-decoration: none;">Akgün Yazılım | Ankara / Turkey</a>
-            </p>
-        </fieldset>
-        <br>
-        <small>Son güncellenme tarihi: 20 Haziran, 2025</small>
+            <br>
+            <small id="last-updated-container"></small>
+        </main>
     </div>
+    <script src="src/script.js"></script>
+</body>
+</html>

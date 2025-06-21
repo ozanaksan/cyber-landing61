@@ -4,12 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Çağatay Ozan Akşan - Kişisel Sayfa</title>
+    
+    <!-- Tema ayarı - CSS'ten önce -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'dark';
+            const root = document.documentElement;
+            
+            if (theme === 'light') {
+                root.style.setProperty('--color', '#111');
+                root.style.setProperty('--background-color', '#f5f5f5');
+                root.style.setProperty('--theme-color', '#ff4522');
+            } else {
+                root.style.setProperty('--color', '#eee');
+                root.style.setProperty('--background-color', '#222');
+                root.style.setProperty('--theme-color', '#ff4522');
+            }
+            root.setAttribute('data-theme', theme);
+        })();
+    </script>
+    
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/normalize.css">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
-<body>
+<body class="no-flash">
     <div class="content">
         <h2>| ozanaksan<b style="color: #ff4522;">.com |</b>
         </h2>
@@ -20,36 +40,38 @@
             <a href="deneyim.html">Deneyim</a> |
             <a href="iletisim.html">İletişim</a>
         </p>
-        <h1>Anasayfa</h1>
-        <p>
-            Ben Çağatay Ozan Akşan. Kendim ve çalıştığım alandaki deneyimlerim hakkında bilgi vermek gerekirse, siber güvenlik alanında uzmanlaşmaya çalışan biriyim. 
-            
-            Bu alanda çeşitli projelerde yer aldım ve birçok farklı teknoloji ile çalıştım. 
-            
-            Siber güvenlik, sürekli gelişen ve yeniliklere açık bir alan olduğu için kendimi sürekli güncel tutmaya özen gösteriyorum. 
-            
-            Ayrıca spor yapmayı ve Trabzonspor'u takip etmeyi seviyorum.
-            <br>
-            <hr style="border: 1px solid #ff4522;">
-            Aşağıdaki bağlantılardan sosyal medya hesaplarıma ulaşabilir ve özgeçmişimi inceleyebilirsiniz.
-        </p>
-        <ul>
-            <li><a href="https://github.com/ozanaksan" target="_blank">Github</a></li>
-            <li><a href="https://www.instagram.com/ozanaksan" target="_blank">Instagram</a></li>
-            <li><a href="https://www.linkedin.com/in/ozanaksan" target="_blank">Linkedin</a></li>
-
-        </ul>
-        <fieldset>
-            <legend><span>Özgeçmiş</span></legend>
-            <p>
-                <b>ÇağatayOzanAkşan2025CV.pdf</b>
+        <main>
+            <h1>Anasayfa</h1>
+            <p style="margin-bottom: 0.5em;">
+                Ben Çağatay Ozan Akşan. Kendim ve çalıştığım alandaki deneyimlerim hakkında bilgi vermek gerekirse, siber güvenlik alanında uzmanlaşmaya çalışan biriyim. 
+                
+                Bu alanda çeşitli projelerde yer aldım ve birçok farklı teknoloji ile çalıştım. 
+                
+                Siber güvenlik, sürekli gelişen ve yeniliklere açık bir alan olduğu için kendimi sürekli güncel tutmaya özen gösteriyorum. 
+                
+                Ayrıca spor yapmayı ve Trabzonspor'u takip etmeyi seviyorum.
             </p>
+            <hr />
             <p>
-            <a href="./assets/ÇağatayOzanAkşan2025CV.pdf" target="_blank">Dokümanı indir</a>
+                Aşağıdaki bağlantılardan sosyal medya hesaplarıma ulaşabilir ve özgeçmişimi inceleyebilirsiniz.
             </p>
-            </fieldset>
-            <br>
-            <small>Son güncellenme tarihi: 20 Haziran, 2025</small>
+            <ul>
+                <li><a href="https://github.com/ozanaksan" target="_blank">Github</a></li>
+                <li><a href="https://www.instagram.com/ozanaksan" target="_blank">Instagram</a></li>
+                <li><a href="https://www.linkedin.com/in/ozanaksan" target="_blank">Linkedin</a></li>
+            </ul>
+            <fieldset>
+                <legend><span>Özgeçmiş</span></legend>
+                <p>
+                    <b>ÇağatayOzanAkşan2025CV.pdf</b>
+                </p>
+                <p>
+                <a href="./assets/ÇağatayOzanAkşan2025CV.pdf" target="_blank">Dokümanı indir</a>
+                </p>
+                </fieldset>
+                <br>
+                <small id="last-updated-container"></small>
+        </main>
     </div>
     <script src="src/script.js"></script>
 </body>
